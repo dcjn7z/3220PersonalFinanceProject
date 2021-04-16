@@ -15,7 +15,11 @@ protected:
 public:
     StatementVector();
     std::string statementVectorToString();
-    void fileToStatement(std::string filepath);
+    std::vector<Statement::Statement> untaggedStatements();
+    std::vector<Statement::Statement> taggedStatements(std::string tag);
+    std::vector<Statement::Statement> incomeStatements();
+    std::vector<Statement::Statement> expenseStatements();
+    double getTotal();
     
 };
 

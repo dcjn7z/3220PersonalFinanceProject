@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include "Tag.h"
 class Statement
 {
 protected:
@@ -13,11 +12,12 @@ protected:
     std::string checkNmbr_;
     std::string amount_;
     std::string balance_;
-    std::vector<Tag::Tag> appliedTagVector;
+    std::vector<std::string> tags;
 
 public:
-    Shape(std::string date, std::string type_, std::string description, std::string checkNmbr, std::string amount, std::string balance);
+    Statement(std::string date, std::string type_, std::string description, std::string checkNmbr, std::string amount, std::string balance);
     std::string to_string();
+    
 };
 
 #endif

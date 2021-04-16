@@ -13,6 +13,7 @@ protected:
 public:
     Tag(std::string tagName);
     std::string tagToString();
+    void addKeyword(std::string newWord);
 };
 
 #endif

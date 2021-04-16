@@ -2,6 +2,7 @@
 #include "Statement.h"
 #include "StatementVector.h"
 #include "MasterVector.h"
+#include "TagVector.h"
 #include <iostream>
 
 int main(void)
@@ -9,28 +10,22 @@ int main(void)
 	char menu = 's';
 	std::string input;
 	MasterVector master;
-	std::vector<Tag::Tag> tagsList;
+	TagVector tags;
 	while(menu!='q')
 	{
-		std::cout<<"HI! Please Select an Option ('q' to quit)\n\t(C)reate New Account\n\t(L)oad Account\n"<<std::endl;
-		switch(menu)
-		{
-			case 'C':
-			case 'c':
-				std::cout<<"Enter a filepath to bank statements"<<std::endl;
-				std::cin << input << std::endl;
-				master.fileToStatement(input); 
-				break;
-			case 'L':
-			case 'l':
-				std::cout<<"Enter a filepath to bank statements"<<std::endl;
-				std::cin << input << std::endl;
-				master.fileToStatement(input);
-				std::cout<<"Enter a filepath to tags list"<<std::endl;
-				//loadtags to tagsList
-				break;
-		}
+		std::cout<<"HI! Enter a filepath to the bank statement file\n"<<std::endl;
+		std::cin>>input>>std::endl;
+		master.fileToStatement(input);
 		
+		std::cout<<"Enter a filepath to load tags, or press enter to skip"<<std::endl;
+		std::cin>>input>>std::endl;
+		
+		if(input!=""){
+		tags.fileToTags(input);}
+	}
+	
+	while(menu!=q)
+	{	
 		std::cout<< "Select an Option:('q' to quit)\n\t(V)iew Lists, Tags, or Keywords\n\t(A)dd Lists, Tags, or Keywords\n\t"
 			"(U)pdate Tags\n\t(D)isplay all untagged Statements\n\t(S)ave Account\n \t(O)utput Something\n"<<std::endl;
 		
