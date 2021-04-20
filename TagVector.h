@@ -8,7 +8,7 @@
 class TagVector
 {
 protected:
-	std::vector<Tag::Tag> tagList;
+	std::vector<Tag> tagList;
 
 public:
     TagVector();

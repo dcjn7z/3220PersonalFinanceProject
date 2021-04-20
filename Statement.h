@@ -15,7 +15,7 @@ protected:
     std::vector<std::string> tags;
 
 public:
-    Statement(std::string date, std::string type_, std::string description, std::string checkNmbr, std::string amount, std::string balance);
+    Statement(std::string date, std::string type, std::string description, std::string checkNmbr, std::string amount, std::string balance);
     std::string to_string();
     
 };
