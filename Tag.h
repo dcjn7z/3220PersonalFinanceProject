@@ -1,6 +1,7 @@
 #ifndef TAG_H
 #define TAG_H
 
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -12,6 +13,7 @@ protected:
 
 public:
     Tag(std::string tagName);
+    std::string getTagName();
     std::string tagToString();
     void addKeyword(std::string newWord);
 };

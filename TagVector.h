@@ -1,8 +1,10 @@
 #ifndef TAGVEC_H
 #define TAGVEC_H
 
-#include <string>
-#include <vector>
+#include <fstream>
+#include <iostream>
+#include <sstream> 
+#include <sstream>
 #include "Tag.h"
 
 class TagVector

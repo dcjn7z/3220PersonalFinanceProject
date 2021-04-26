@@ -3,24 +3,25 @@
 TagVector::TagVector() {}
 
 void TagVector::fileToTags(std::string filename){
-	std::ifstream tagfile(filename);
+
+	std::ifstream tagFile(filename);
 	std::string line; 
 	
-	getline(tagfile, line);
+	getline(tagFile, line);
 	std::string tag; 
 	
-	getline(tagfile, line);
+	getline(tagFile, line);
 	tag = stoi(line);
 	
-	if(!tagfile){
+	if(!tagFile){
 		std::cout << "File error. Could not convert." <<std::endl;
 	}
-	tagfile.close();
+	tagFile.close();
 }
 
 std::string TagVector::tagVectorToString(){
 	std::string tagVectorString;
-	tagVectorString = tagVector;
+	//tagVectorString = tagList;
 	return tagVectorString; 
 }
 
@@ -36,36 +37,38 @@ void TagVector::addTag(std::string newTag){
 			std::cout << "Program stopped." << std::endl; 
 			return;
 		}
-		std::vector<Tag>::iterator iter;
-		for (iter = tagList.begin(); iter != tagList.end(); iter++){
-			newTag.push_back();
-		}
+		this->tagList.push_back(*(new Tag(newTag)));
 	}
 }
 
-int TagVector::searchTag(std::string searchedTag){
+int TagVector::searchTag(std::string searchedTag)
+{
 	int i = 0;
-	while( i < size_t(tagList)){
-		if (tagList[i] == Tag) {
-			std::cout << " " << Tag.to_string() << "Tag found at " << std::to_string(i) << "." << std::endl;
+	while( i < this->tagList.size())
+	{
+		if (tagList[i].getTagName() == searchedTag)
+		 {
+			std::cout << searchedTag << " Tag found at " << std::to_string(i) << "." << std::endl;
 			return i;
 		} 
 	i++;
-	std::cout << "Tag not found" << std::endl;
-
 	}
+	std::cout << "Tag not found" << std::endl;
+	return 0;
 }
 
-std::string TagVector::printKeywords(){
+std::string TagVector::printKeywords()
+{
+	std::stringstream output;
 	int i = 0;
-	if( i < size_t(tagList[i])){
-		std::cout << "" << std::to_string(tagList[i].tagName) << std::endl;
+	if( i < this->tagList.size()){
+		//output << "" << std::to_string(tagList[i].getTagName()) << std::endl;
 		int j = 0;
-		if(j < size_t(tagList[j])) {
+		if(j < this->tagList.size()) {
 			//std::cout << "" << tagList[i] << "" << keywords[j] << std::endl; 
 			j++;
 		}
 	i++;
 	}
-	return;
+	return output.str();
 }

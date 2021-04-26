@@ -1,8 +1,8 @@
-//#include "Tag.h"
+#include "Tag.h"
 #include "Statement.h"
 #include "StatementVector.h"
 #include "MasterVector.h"
-//#include "TagVector.h"
+#include "TagVector.h"
 #include <iostream>
 
 int main(void)
