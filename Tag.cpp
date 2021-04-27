@@ -10,41 +10,29 @@ std::string Tag::getTagName()
 }
 
 std::string Tag::tagToString(){
-	std::string tagString;
-	tagString = tagName_; 
-	return tagString; 
+	std::stringstream output;
+	output << tagName_ << " - \n";
+    for (int i = 0; i < keywords.size(); i++)
+    {
+    	 output << "\t" << keywords[i] << "\n";
+    }
+	return output.str(); 
 }
 
-//still need to search through list to add new word
 void Tag::addKeyword(std::string newWord)
 {
-	int i = 0;
-	while (i == 0)
+	int found = 0;
+	for(int i = 0; i < keywords.size();i++)
 	{
-		std::cout << "Select a tag: ";
-		std::string tagA;  
-		std :: cin >> tagA; 
-		//int index = 0;
-		//newWord = searchTag(tagList, tagA);
-		/*if (newWord != NULL){
-			index = newWord;
-			i = 1;
-		}*/
-	
-		int j = 0;
-		if( j == 0)
+		if(newWord==keywords[i])
 		{
-			char key; 
-			std::cout << "Enter keyword(s) for selected tag (s to stop): ";
-			std::cin >> key; 
-			if( key == 's')
-			{
-				j = 1;
-			}
-			else
-			{
-				//keywords.push_back(key);
-			}
+			found = 1;
+			std::cout << "keyword already in this tag's list" << std::endl;
 		}
+	}
+	
+	if (found==0)
+	{
+		keywords.push_back(newWord);
 	}
 }

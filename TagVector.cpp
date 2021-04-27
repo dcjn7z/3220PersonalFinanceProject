@@ -1,74 +1,99 @@
 #include "TagVector.h"
 
-TagVector::TagVector() {}
+TagVector::TagVector(){}
 
-void TagVector::fileToTags(std::string filename){
+int TagVector::fileToTags(std::string filepath)
+{
 
-	std::ifstream tagFile(filename);
-	std::string line; 
-	
-	getline(tagFile, line);
-	std::string tag; 
-	
-	getline(tagFile, line);
-	tag = stoi(line);
-	
-	if(!tagFile){
-		std::cout << "File error. Could not convert." <<std::endl;
+	std::ifstream file(filepath);
+
+	if(!file) {
+		std::cerr << "Cannot open file\n";
+		return 0;
 	}
-	tagFile.close();
+
+    std::string line, string;
+
+    getline(file, line);
+	
+    std::string name, tag;
+	//std::cout << line << std::endl;  
+	
+	std::istringstream iline(line);      
+	getline(iline,string, ',');
+	while(getline(iline,string,','))
+	{
+		this->tagList.push_back(Tag(string));
+	}
+	//getline(iline,string, ',');
+	
+	int index=0;
+	while (std::getline(file, line))
+    {
+		std::cout << line << std::endl;
+		std::istringstream iline(line);    
+		getline(iline, string, ',');
+		while(getline(iline, string, ','))
+		{
+       		this->tagList[index].addKeyword(string);
+       	}
+       index++;
+    }
+    file.close();
+    return 1;
 }
 
-std::string TagVector::tagVectorToString(){
-	std::string tagVectorString;
-	//tagVectorString = tagList;
-	return tagVectorString; 
-}
-
-void TagVector::addTag(std::string newTag){
-	newTag = "start";
-	int i = 0;
-	while( i == 0){
-		char newT;
-		std::cout << "Enter new tag (s to stop): ";
-		std::cin >> newT;
-		if(newT == 's'){
-			i = 1;
-			std::cout << "Program stopped." << std::endl; 
-			return;
+void TagVector::addTag(std::string newTag)
+{
+	int found = 0;
+	for(int i = 0; i < tagList.size();i++)
+	{
+		if(newTag==tagList[i].getTagName())
+		{
+			found = 1;
+			std::cout << "Tag already in the tag list" << std::endl;
 		}
-		this->tagList.push_back(*(new Tag(newTag)));
+	}
+	
+	if (found==0)
+	{
+		tagList.push_back(newTag);
 	}
 }
 
 int TagVector::searchTag(std::string searchedTag)
 {
-	int i = 0;
-	while( i < this->tagList.size())
+	
+	for(int i = 0; i < tagList.size(); i++)
 	{
 		if (tagList[i].getTagName() == searchedTag)
 		 {
 			std::cout << searchedTag << " Tag found at " << std::to_string(i) << "." << std::endl;
 			return i;
 		} 
-	i++;
 	}
 	std::cout << "Tag not found" << std::endl;
 	return 0;
 }
 
-std::string TagVector::printKeywords()
+void TagVector::printTags()
 {
 	std::stringstream output;
-	int i = 0;
-	if( i < this->tagList.size()){
-		//output << "" << std::to_string(tagList[i].getTagName()) << std::endl;
-		int j = 0;
-		if(j < this->tagList.size()) {
-			//std::cout << "" << tagList[i] << "" << keywords[j] << std::endl; 
-			j++;
-		}
-	i++;
-	}
-	return output.str();
+	output << "TAGS:\n";
+    for (int i = 0; i < tagList.size(); i++)
+    {
+    	output <<  tagList[i].getTagName() << ", ";
+    }
+	std::cout <<  output.str() << std::endl;
+}
+
+void TagVector::printKeywords()
+{
+	std::stringstream output;
+	output << "TAGS:\n";
+    for (int i = 0; i < tagList.size(); i++)
+    {
+    	output <<  tagList[i].tagToString();
+    }
+	std::cout <<  output.str() << std::endl;
 }

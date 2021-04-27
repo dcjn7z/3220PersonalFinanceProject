@@ -1,10 +1,6 @@
 #ifndef TAGVEC_H
 #define TAGVEC_H
 
-#include <fstream>
-#include <iostream>
-#include <sstream> 
-#include <sstream>
 #include "Tag.h"
 
 class TagVector
@@ -14,11 +10,11 @@ protected:
 
 public:
     TagVector();
-    void fileToTags(std::string filename);
-    std::string tagVectorToString();
+    int fileToTags(std::string filepath);
     void addTag(std::string newTag);
     int searchTag(std::string searchedTag);
-    std::string printKeywords();
+    void printTags();
+    void printKeywords();
 };
 
 #endif

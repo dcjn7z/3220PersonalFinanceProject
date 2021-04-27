@@ -1,8 +1,9 @@
 #ifndef TAG_H
 #define TAG_H
 
+#include <fstream>
 #include <iostream>
-#include <string>
+#include <sstream> 
 #include <vector>
 
 class Tag

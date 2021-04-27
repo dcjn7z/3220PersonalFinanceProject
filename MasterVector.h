@@ -16,7 +16,7 @@ protected:
 
 public:
     MasterVector();
-    void fileToStatement(std::string filepath);
+    int fileToStatement(std::string filepath);
     void updateTags();
     void print();
 };

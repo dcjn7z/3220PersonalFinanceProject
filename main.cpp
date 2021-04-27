@@ -5,58 +5,138 @@
 #include "TagVector.h"
 #include <iostream>
 
-int main(void)
+int main(int argc, char* argv[])
 {
-	//char menu = 's';
+	
+	
 	std::string input = "";
-	MasterVector master;
-	//TagVector tags;
-	while(input!="q")
+	MasterVector master = MasterVector();
+	TagVector tags = TagVector();
+	
+	if(argc==3)
+	{
+		while(master.fileToStatement(argv[1])==0)
+		{
+			std::cout<<"Enter a filepath to the bank statement file"<<std::endl;
+			std::cin>>input;
+		}
+		//master.print();
+	
+		while(tags.fileToTags(argv[2])==0 || input=="q")
+		{
+			std::cout<<"Enter a filepath to a tag file, or type 'q' to skip"<<std::endl;
+			std::cin>>input;
+		}
+		std::cout << std::endl;
+		//tags.printKeywords();
+	}
+	
+	else if(argc==2)
+	{
+		while(master.fileToStatement(argv[1])==0)
+		{
+			std::cout<<"Enter a filepath to the bank statement file"<<std::endl;
+			std::cin>>input;
+		}
+		//master.print();
+	
+		std::cout<<"Enter a filepath to a tag file, or type 'q' to skip"<<std::endl;
+		std::cin>>input;
+		while(tags.fileToTags(input)==0 || input=="q")
+		{
+			std::cout<<"Enter a filepath to a tag file, or type 'q' to skip"<<std::endl;
+			std::cin>>input;
+		}
+		std::cout << std::endl;
+		//tags.printKeywords();
+	}
+	
+	else
 	{
 		std::cout<<"HI! Enter a filepath to the bank statement file"<<std::endl;
 		std::cin>>input;
-		master.fileToStatement(input);
-		
-		/*std::cout<<"Enter a filepath to load tags, or press enter to skip"<<std::endl;
-		std::cin>>input;
-		
-		if(input!=""){
-			tags.fileToTags(input);
-		}*/
-	}
-	
-	master.print();
-
-	/*while(menu!='q')
-	{	
-		std::cout<< "Select an Option:('q' to quit)\n\t(V)iew Lists, Tags, or Keywords\n\t(A)dd Lists, Tags, or Keywords\n\t"
-			"(U)pdate Tags\n\t(D)isplay all untagged Statements\n\t(S)ave Account\n \t(O)utput Something\n"<<std::endl;
-		
-		switch(menu)
+		while(master.fileToStatement(input)==0)
 		{
-			case 'V':
-			case 'v':
-				break;
-				
-			case 'A':
-			case 'a':
-				break;
-				
-			case 'U':
-			case 'u':
-				break;
-				
-			case 'D':
-			case 'd':
-				break;
-				
-			case 'S':
-			case 's':
-				break;
-				
-			case 'O':
-			case 'o':
-				break;
+			std::cout<<"Enter a filepath to the bank statement file"<<std::endl;
+			std::cin>>input;
 		}
-	}*/
+		//master.print();
+	
+		std::cout<<"Enter a filepath to a tag file, or type 'q' to skip"<<std::endl;
+		std::cin>>input;
+		while(tags.fileToTags(input)==0 || input=="q")
+		{
+			std::cout<<"Enter a filepath to a tag file, or type 'q' to skip"<<std::endl;
+			std::cin>>input;
+		}
+		std::cout << std::endl;
+		//tags.printKeywords();
+	}
+
+	input="";
+	std::cout<< "Select an Option:('q' to quit)\n\t(A)dd Lists, Tags, or Keywords\n\t(V)iew Lists, Tags, or Keywords\n\t"
+			"(U)pdate Tags\n\t(D)isplay all untagged Statements\n\t(S)ave Account\n \t(O)utput Something\n"<<std::endl;
+	std::cin>>input;
+	while(input!="q" || input!="Q")
+	{	
+
+		
+		if(input=="A" || input=="a")
+		{		
+			std::cout << "Enter 'L' to add a list, 'T' to add a tag, 'K' to add a keyword, or 'Q' to stop" << std::endl;
+			std::cin>>input;
+			while(input!="q" || input!="Q")
+			{
+				if(input=="l" || input == "L")
+				{
+				
+				}
+						
+				else if(input=="T" || input== "t")
+				{
+					std::cout << "Enter a tag to add" << std::endl;
+					std::cin>>input;
+					tags.addTag(input);
+				}
+							
+				else if(input=="K" || input=="k")
+				{
+					std::cout << "Enter a tag to add" << std::endl;
+					std::cin>>input;
+					//tags.addKeyword(input);
+				}
+				std::cout << "Enter 'L' to add a list, 'T' to add a tag, 'K' to add a keyword, or 'Q' to stop" << std::endl;
+				std::cin>>input;
+			}
+		}	
+		if(input=="V" || input=="v")
+		{
+			std::cout << "Enter 'L' to view all lists, 'T' to view all tags, 'K' to view all keywords, or 'Q' to stop" << std::endl;
+			std::cin>>input;
+			while(input!="q" || input!="Q")
+			{
+				if(input=="l" || input == "L")
+				{
+				
+				}
+						
+				else if (input=="T" || input== "t")
+				{
+					tags.printTags();
+				}
+							
+				else if(input=="K" || input=="k")
+				{
+					tags.printKeywords();
+				}
+							
+				std::cout << "Enter 'L' to view all lists, 'T' to view all tags, 'K' to view all keywords, or 'Q' to stop" << std::endl;
+				std::cin>>input;
+			}
+		
+		}
+		std::cout<< "Select an Option:('q' to quit)\n\t(A)dd Lists, Tags, or Keywords\n\t(V)iew Lists, Tags, or Keywords\n\t"
+			"(U)pdate Tags\n\t(D)isplay all untagged Statements\n\t(S)ave Account\n \t(O)utput Something\n"<<std::endl;
+		std::cin>>input;
+	}
 }
