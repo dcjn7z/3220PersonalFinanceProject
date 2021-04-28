@@ -1,11 +1,9 @@
 #ifndef STATEVECT_H
 #define STATEVECT_H
 
-#include <iostream>
-#include <string>
-#include <vector>
 #include "Tag.h"
 #include "Statement.h"
+#include "MasterVector.h"
 
 class StatementVector
 {

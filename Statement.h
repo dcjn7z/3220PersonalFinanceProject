@@ -1,8 +1,11 @@
 #ifndef STATEMENT_H
 #define STATEMENT_H
 
+#include <iostream>
 #include <string>
 #include <vector>
+#include <sstream> 
+
 class Statement
 {
 protected:
@@ -12,7 +15,8 @@ protected:
     std::string checkNmbr_;
     std::string amount_;
     std::string balance_;
-    std::vector<std::string> tags;
+    //std::vector<std::string> tags;
+    std::string tag;
 
 public:
     Statement(std::string date, std::string type, std::string description, std::string checkNmbr, std::string amount, std::string balance);
