@@ -15,6 +15,7 @@ public:
     int searchTag(std::string searchedTag);
     void printTags();
     void printKeywords();
+    void addKeywords(std::string newKeyword);
 };
 
 #endif

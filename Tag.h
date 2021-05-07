@@ -16,7 +16,8 @@ public:
     Tag(std::string tagName);
     std::string getTagName();
     std::string tagToString();
-    void addKeyword(std::string newWord);
+    void addKeyword();
+    void addKeyword(std::string newKeyword);
 };
 
 #endif

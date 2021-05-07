@@ -22,3 +22,37 @@ std::string Statement::to_string()
                     "Balance: " + balance_ + "\n";
     return statementString;
 }
+std::string Statement::getDate()
+{
+	return date_;
+}
+std::string Statement::getType()
+{
+	return type_;
+}
+std::string Statement::getDescription()
+{
+	return description_;
+}
+std::string Statement::getCheckNumber()
+{
+	return checkNmbr_;
+}
+std::string Statement::getAmount()
+{
+	return amount_;
+}
+std::string Statement::getBalance()
+{
+	return balance_;
+}
+std::string Statement::getTag()
+{
+	return tag_;
+}
+
+void Statement::setTag(std::string newTag)
+{
+	tag_=newTag;
+}
+

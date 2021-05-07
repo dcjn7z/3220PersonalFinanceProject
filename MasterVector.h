@@ -5,17 +5,20 @@
 
 #include "Tag.h"
 #include "Statement.h"
+#include "StatementVector.h"
+#include "TagVector.h"
 
 class MasterVector
 {
 protected:
-	std::vector<Statement> master;
+	std::vector<StatementVector> master;
 
 public:
-    MasterVector();
-    int fileToStatement(std::string filepath);
+   	int addMaster(std::string filepath);
     void updateTags();
     void print();
+    void addList(std::string listName);
+    std::vector<StatementVector> getMasterVector();
 };
 
 #endif

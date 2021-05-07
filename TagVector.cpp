@@ -97,3 +97,9 @@ void TagVector::printKeywords()
     }
 	std::cout <<  output.str() << std::endl;
 }
+ 
+void TagVector::addKeywords(std::string newKeyword)
+ {
+ 	std::string input;
+ 	tagList[searchTag(newKeyword)].addKeyword();
+ }

@@ -16,11 +16,19 @@ protected:
     std::string amount_;
     std::string balance_;
     //std::vector<std::string> tags;
-    std::string tag;
+    std::string tag_;
 
 public:
     Statement(std::string date, std::string type, std::string description, std::string checkNmbr, std::string amount, std::string balance);
     std::string to_string();
+    std::string getDate();
+    std::string getType();
+    std::string getDescription();
+    std::string getCheckNumber();
+    std::string getAmount();
+    std::string getBalance();
+    std::string getTag();
+    void setTag(std::string newTag);
     
 };
 
