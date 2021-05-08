@@ -29,7 +29,7 @@ int TagVector::fileToTags(std::string filepath)
 	
 	int index=0;
 	while (std::getline(file, line))
-    {
+    	{
 		std::cout << line << std::endl;
 		std::istringstream iline(line);    
 		getline(iline, string, ',');
@@ -38,7 +38,7 @@ int TagVector::fileToTags(std::string filepath)
        		this->tagList[index].addKeyword(string);
        	}
        index++;
-    }
+       }
     file.close();
     return 1;
 }
@@ -46,31 +46,42 @@ int TagVector::fileToTags(std::string filepath)
 void TagVector::addTag(std::string newTag)
 {
 	int found = 0;
-	for(int i = 0; i < tagList.size();i++)
+	for(int i = 0; i < tagList.size() ;i++)
 	{
-		if(newTag==tagList[i].getTagName())
-		{
-			found = 1;
-			std::cout << "Tag already in the tag list" << std::endl;
+		try{
+			if(newTag==tagList[i].getTagName())
+			{
+				found = 1;
+				throw std::string("Exception: Duplicate Tag.");
+			}
+			if (found == 0){
+				tagList.push_back(newTag);
+				std::cout << "New tag has been added succesfully." << std::endl;
+			}
 		}
-	}
-	
-	if (found==0)
-	{
-		tagList.push_back(newTag);
+		catch(const std::string &e){
+			std::cerr << e << std::endl;
+			std::cerr << "Error. Tag " << newTag << " already exists." << std::endl;
+		}
 	}
 }
 
 int TagVector::searchTag(std::string searchedTag)
 {
-	
 	for(int i = 0; i < tagList.size(); i++)
 	{
-		if (tagList[i].getTagName() == searchedTag)
-		 {
-			std::cout << searchedTag << " Tag found at " << std::to_string(i) << "." << std::endl;
-			return i;
-		} 
+		try{
+			if(tagList[i].size() = 0){
+				throw std::string("Exception: Tag List is empty.");
+			}
+			else if (tagList[i].getTagName() == searchedTag){
+				std::cout << searchedTag << " Tag found at " << std::to_string(i) << "." << std::endl;
+				return i;
+			}
+		}	 
+		catch(const std::string &e){
+			std::cerr << e << std::endl;
+		}
 	}
 	std::cout << "Tag not found" << std::endl;
 	return 0;
@@ -80,10 +91,11 @@ void TagVector::printTags()
 {
 	std::stringstream output;
 	output << "TAGS:\n";
-    for (int i = 0; i < tagList.size(); i++)
-    {
-    	output <<  tagList[i].getTagName() << ", ";
-    }
+	
+	for (int i = 0; i < tagList.size(); i++)
+   	{
+    		output <<  tagList[i].getTagName() << ", ";
+    	}
 	std::cout <<  output.str() << std::endl;
 }
 
@@ -91,10 +103,11 @@ void TagVector::printKeywords()
 {
 	std::stringstream output;
 	output << "TAGS:\n";
-    for (int i = 0; i < tagList.size(); i++)
-    {
-    	output <<  tagList[i].tagToString();
-    }
+   	
+   	for (int i = 0; i < tagList.size(); i++)
+    	{
+    		output <<  tagList[i].tagToString();
+    	}
 	std::cout <<  output.str() << std::endl;
 }
  
