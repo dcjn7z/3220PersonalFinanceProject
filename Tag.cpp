@@ -27,16 +27,23 @@ void Tag::addKeyword()
 	std::cin>>input;
 	for(int i = 0; i < keywords.size();i++)
 	{
-		if(input==keywords[i])
-		{
-			found = 1;
-			std::cout << "keyword already in this tag's list" << std::endl;
-		}
-	}
+		try{
+			if(input==keywords[i])
+			{
+				found = 1;
+				throw std::string << "Exception: Duplicate keyword." << std::endl;
+			}
 	
-	if (found==0)
-	{
-		keywords.push_back(input);
+			if (found==0)
+			{
+			keywords.push_back(input);
+			std::cout << "Keyword has been added succesfully." << std::endl;
+			}
+		}
+		catch(const std::string &e){
+			std::cerr << e << std::endl;
+			std::cerr << "Error. Keyword " << keywords << " already exists." << std::endl;
+		}
 	}
 }
 void Tag::addKeyword(std::string newKeyword)
