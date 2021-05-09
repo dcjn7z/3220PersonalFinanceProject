@@ -31,7 +31,7 @@ void Tag::addKeyword()
 			if(input==keywords[i])
 			{
 				found = 1;
-				throw std::string << "Exception: Duplicate keyword." << std::endl;
+				throw std::string("Exception: Duplicate keyword.");
 			}
 	
 			if (found==0)
@@ -42,7 +42,7 @@ void Tag::addKeyword()
 		}
 		catch(const std::string &e){
 			std::cerr << e << std::endl;
-			std::cerr << "Error. Keyword " << keywords << " already exists." << std::endl;
+			std::cerr << "Error. Keyword " << keywords[i] << " already exists." << std::endl;
 		}
 	}
 }
@@ -62,4 +62,8 @@ void Tag::addKeyword(std::string newKeyword)
 	{
 		keywords.push_back(newKeyword);
 	}
+}
+std::vector<std::string> Tag::getKeywords()
+{
+	return keywords;
 }

@@ -16,6 +16,7 @@ public:
     void printTags();
     void printKeywords();
     void addKeywords(std::string newKeyword);
+    std::vector<Tag> getTagList();
 };
 
 #endif

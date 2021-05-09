@@ -15,7 +15,7 @@ protected:
 
 public:
    	int addMaster(std::string filepath);
-    void updateTags();
+    void updateTags(TagVector tagVector);
     void print();
     void addList(std::string listName);
     std::vector<StatementVector> getMasterVector();

@@ -71,7 +71,7 @@ int TagVector::searchTag(std::string searchedTag)
 	for(int i = 0; i < tagList.size(); i++)
 	{
 		try{
-			if(tagList[i].size() = 0){
+			if(tagList.size() == 0){
 				throw std::string("Exception: Tag List is empty.");
 			}
 			else if (tagList[i].getTagName() == searchedTag){
@@ -115,4 +115,8 @@ void TagVector::addKeywords(std::string newKeyword)
  {
  	std::string input;
  	tagList[searchTag(newKeyword)].addKeyword();
+ }
+ std::vector<Tag> TagVector::getTagList()
+ {
+ 	return tagList;
  }

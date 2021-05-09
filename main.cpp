@@ -138,7 +138,20 @@ int main(int argc, char* argv[])
 				std::cout << "Enter 'L' to view all lists, 'T' to view all tags, 'K' to view all keywords, or 'Q' to stop" << std::endl;
 				std::cin>>input;
 			}
-		
+		}
+		if(input=="U" || input=="u")
+		{
+			master.updateTags(tags);
+		}
+		if(input=="D" || input=="d")
+		{
+			for(int i = 0; i<master.getMasterVector()[0].getStatements().size();i++)
+			{
+				if(master.getMasterVector()[0].getStatements()[i].getTag()=="")
+				{
+					std::cout << master.getMasterVector()[0].getStatements()[i].to_string() << std::endl;
+				}
+			}
 		}
 		std::cout<< "Select an Option:('q' to quit)\n\t(A)dd Lists, Tags, or Keywords\n\t(V)iew Lists, Tags, or Keywords\n\t"
 			"(U)pdate Tags\n\t(D)isplay all untagged Statements\n\t(S)ave Account\n \t(O)utput Something\n"<<std::endl;

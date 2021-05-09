@@ -2,7 +2,7 @@
 
 int MasterVector::addMaster(std::string filepath)
 {
-	StatementVector allStatements("All Statements");
+	StatementVector allStatements("AllStatements");
 	std::string input;
 	while (allStatements.fileToStatement(filepath)==0)
 	{
@@ -14,9 +14,25 @@ int MasterVector::addMaster(std::string filepath)
 	return 1;
 }
 
-void MasterVector::updateTags()
+void MasterVector::updateTags(TagVector tagVector)
 {
-	
+	for(int i = 0; i<master.size(); i++)
+	{
+		for(int x = 0; x <master[i].getStatements().size();x++)
+		{
+			for(int y = 0; y <tagVector.getTagList().size();y++)
+			{
+				for(int z = 0; z < tagVector.getTagList()[y].getKeywords().size();z++)
+				{
+					if(master[i].getStatements()[x].getDescription().find(tagVector.getTagList()[y].getKeywords()[z])!=std::string::npos)
+					{
+						master[i].getStatements()[x].setTag(tagVector.getTagList()[y].getTagName());
+						std::cout << "Here " <<  x << " " << y << " " << z << " " << master[i].getStatements()[x].getDescription() << std::endl;
+					}
+				}
+			}
+		}
+	}
 }
 
 void MasterVector::print()

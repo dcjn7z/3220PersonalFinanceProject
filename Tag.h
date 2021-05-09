@@ -18,6 +18,7 @@ public:
     std::string tagToString();
     void addKeyword();
     void addKeyword(std::string newKeyword);
+    std::vector<std::string> getKeywords();
 };
 
 #endif
