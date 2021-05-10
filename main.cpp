@@ -157,5 +157,8 @@ int main(int argc, char* argv[])
 			"(U)pdate Tags\n\t(D)isplay all untagged Statements\n\t(S)ave Account\n \t(O)utput Something\n"<<std::endl;
 		std::cin>>input;
 	}
+	
+	MasterVector.output_csv("Output.csv");
+	
 	return 0;
 }

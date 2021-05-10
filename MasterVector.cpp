@@ -80,3 +80,17 @@ std::vector<StatementVector> MasterVector::getMasterVector()
 {
 	return master;
 }
+
+void MasterVector::output_csv(std::string fileName){
+	std::ofstream outputFile(fileName);
+
+	StatementVector Name(fileName);
+	outputFile << Name.getListName() << std::endl;
+	outputFile << "Date, Type, Description, Check Number, Amount, Balance " << std::endl;
+	
+	std::vector<MasterVector>::iterator iter;
+	for (iter = master.begin(); iter != master.end(); iter++){
+	 	outputFile << (*iter).fileToStatement() << std::endl;
+	 }
+	outputFile.close();
+}

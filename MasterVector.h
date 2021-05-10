@@ -19,6 +19,7 @@ public:
     void print();
     void addList(std::string listName);
     std::vector<StatementVector> getMasterVector();
+     void output_csv(std::string fileName);
 };
 
 #endif
