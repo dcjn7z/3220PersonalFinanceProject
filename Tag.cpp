@@ -1,12 +1,12 @@
 #include "Tag.h"
 
 Tag::Tag(std::string tagName){
-	this->tagName_ = tagName; 
+	tagName_ = tagName; 
 }
 
 std::string Tag::getTagName()
 {
-	return this->tagName_;
+	return tagName_;
 }
 
 std::string Tag::tagToString(){
@@ -27,24 +27,16 @@ void Tag::addKeyword()
 	std::cin>>input;
 	for(int i = 0; i < keywords.size();i++)
 	{
-		try{
-			if(input==keywords[i])
-			{
-				found = 1;
-				throw std::string("Exception: Duplicate keyword.");
-			}
-	
-			if (found==0)
-			{
-			keywords.push_back(input);
-			std::cout << "Keyword has been added succesfully." << std::endl;
-			}
-		}
-		catch(const std::string &e){
-			std::cerr << e << std::endl;
-			std::cerr << "Error. Keyword " << keywords[i] << " already exists." << std::endl;
-		}
-	}
+		if(input==keywords[i])
+ 		{
+ 			found = 1;
+ 			std::cout << "keyword already in this tag's list" << std::endl;
+ 		}
+ 	}
+	if (found==0)
+ 	{
+ 		keywords.push_back(input);
+ 	}
 }
 void Tag::addKeyword(std::string newKeyword)
 {

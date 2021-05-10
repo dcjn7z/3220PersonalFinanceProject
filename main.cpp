@@ -149,7 +149,7 @@ int main(int argc, char* argv[])
 			{
 				if(master.getMasterVector()[0].getStatements()[i].getTag()=="")
 				{
-					std::cout << master.getMasterVector()[0].getStatements()[i].to_string() << std::endl;
+					std::cout << master.getMasterVector()[0].getStatements()[i].to_string();
 				}
 			}
 		}

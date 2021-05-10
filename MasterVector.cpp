@@ -16,22 +16,25 @@ int MasterVector::addMaster(std::string filepath)
 
 void MasterVector::updateTags(TagVector tagVector)
 {
+	std::vector<Statement> newStatements;
 	for(int i = 0; i<master.size(); i++)
 	{
-		for(int x = 0; x <master[i].getStatements().size();x++)
+		newStatements = master[i].getStatements();
+		for(int x = 0; x <newStatements.size();x++)
 		{
 			for(int y = 0; y <tagVector.getTagList().size();y++)
 			{
 				for(int z = 0; z < tagVector.getTagList()[y].getKeywords().size();z++)
 				{
-					if(master[i].getStatements()[x].getDescription().find(tagVector.getTagList()[y].getKeywords()[z])!=std::string::npos)
+					if(newStatements[x].getDescription().find(tagVector.getTagList()[y].getKeywords()[z])!=std::string::npos)
 					{
-						master[i].getStatements()[x].setTag(tagVector.getTagList()[y].getTagName());
-						std::cout << "Here " <<  x << " " << y << " " << z << " " << master[i].getStatements()[x].getDescription() << std::endl;
+						newStatements[x].setTag(tagVector.getTagList()[y].getTagName());
+						//std::cout << "Here " <<  x << " " << y << " " << z << " " << newStatements[x].getDescription() << std::endl;
 					}
 				}
 			}
 		}
+		master[i].setStatements(newStatements);
 	}
 }
 
@@ -57,7 +60,17 @@ void MasterVector::addList(std::string listName)
 					newList.setStatements(master[0].taggedStatements(input));
 					master.push_back(newList);
 				}
-						
+				
+				if(input=="E" || input == "e")
+				{
+					newList.setStatements(master[0].expenseStatements());
+					master.push_back(newList);
+				}
+				if(input=="I" || input == "i")
+				{
+					newList.setStatements(master[0].incomeStatements());
+					master.push_back(newList);
+				}	
 				std::cout << "Enter 'T' for a tagged list, 'E' for expense list, 'I' for income list, or 'Q' to stop" << std::endl;
 				std::cin>>input;
 				//std::cout << "Input = " << input << std::endl;

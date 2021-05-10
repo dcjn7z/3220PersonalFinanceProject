@@ -48,40 +48,28 @@ void TagVector::addTag(std::string newTag)
 	int found = 0;
 	for(int i = 0; i < tagList.size() ;i++)
 	{
-		try{
-			if(newTag==tagList[i].getTagName())
-			{
-				found = 1;
-				throw std::string("Exception: Duplicate Tag.");
-			}
-			if (found == 0){
-				tagList.push_back(newTag);
-				std::cout << "New tag has been added succesfully." << std::endl;
-			}
-		}
-		catch(const std::string &e){
-			std::cerr << e << std::endl;
-			std::cerr << "Error. Tag " << newTag << " already exists." << std::endl;
-		}
-	}
+		if(newTag==tagList[i].getTagName())
+ 		{
+ 			found = 1;
+ 			std::cout << "Tag already in the tag list" << std::endl;
+ 		}
+
+ 		if (found==0)
+ 		{
+ 			tagList.push_back(newTag);
+ 		}
+ 	}
 }
 
 int TagVector::searchTag(std::string searchedTag)
 {
 	for(int i = 0; i < tagList.size(); i++)
 	{
-		try{
-			if(tagList.size() == 0){
-				throw std::string("Exception: Tag List is empty.");
-			}
-			else if (tagList[i].getTagName() == searchedTag){
-				std::cout << searchedTag << " Tag found at " << std::to_string(i) << "." << std::endl;
-				return i;
-			}
-		}	 
-		catch(const std::string &e){
-			std::cerr << e << std::endl;
-		}
+		if (tagList[i].getTagName() == searchedTag)
+ 		 {
+ 			std::cout << searchedTag << " Tag found at " << std::to_string(i) << "." << std::endl;
+ 			return i;
+ 		} 
 	}
 	std::cout << "Tag not found" << std::endl;
 	return 0;

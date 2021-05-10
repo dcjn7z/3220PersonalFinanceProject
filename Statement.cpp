@@ -53,6 +53,7 @@ std::string Statement::getTag()
 
 void Statement::setTag(std::string newTag)
 {
+	//std::cout << "Set a tag " << newTag << std::endl;
 	tag_=newTag;
 }
 
