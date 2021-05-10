@@ -108,3 +108,31 @@ void TagVector::addKeywords(std::string newKeyword)
  {
  	return tagList;
  }
+ 
+int TagVector::tagsToFile(std::string filepath)
+{
+	std::ofstream file(filepath);
+
+	if(!file) {
+		std::cerr << "Cannot open file\n";
+		return 0;
+	}
+    
+	for(int i = 0; i<tagList.size();i++)
+	{
+		file << tagList[i].getTagName() << ",";
+	}
+	file << std::endl;
+	for(int x = 0; x<tagList.size();x++)
+	{
+		file << tagList[x].getTagName() << ",";
+		for(int z = 0; z<tagList[x].getKeywords().size();z++)
+		{
+			file << tagList[x].getKeywords()[z] << ",";
+		}
+		file << std::endl;
+	}
+	file.close();
+    return 1;
+  
+}

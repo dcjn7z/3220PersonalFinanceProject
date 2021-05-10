@@ -81,16 +81,22 @@ std::vector<StatementVector> MasterVector::getMasterVector()
 	return master;
 }
 
-void MasterVector::output_csv(std::string fileName){
+void MasterVector::outputCSV(std::string fileName)
+{
 	std::ofstream outputFile(fileName);
-
-	StatementVector Name(fileName);
-	outputFile << Name.getListName() << std::endl;
-	outputFile << "Date, Type, Description, Check Number, Amount, Balance " << std::endl;
-	
-	std::vector<MasterVector>::iterator iter;
-	for (iter = master.begin(); iter != master.end(); iter++){
-	 	outputFile << (*iter).fileToStatement() << std::endl;
-	 }
+	std::vector<Statement> currentVector;
+	for(int i = 0; i<master.size();i++)
+	{
+		currentVector = master[i].getStatements();
+		outputFile << master[i].getListName() << std::endl;
+		outputFile << "Date, Type, Description, Check Number, Amount, Balance " << std::endl;
+		for (int x = 0; x<currentVector.size();x++)
+		{
+	 		outputFile << currentVector[x].getDate() << "," << currentVector[x].getType() << "," << currentVector[x].getDescription() << ","
+	 		<< currentVector[x].getCheckNumber() << "," << currentVector[x].getAmount() << "," 
+	 		<< currentVector[x].getBalance() << std::endl;
+	 	}
+	 	outputFile << std::endl;
+	}
 	outputFile.close();
 }

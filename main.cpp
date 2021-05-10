@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 
 	input="";
 	std::cout<< "Select an Option:('q' to quit)\n\t(A)dd Lists, Tags, or Keywords\n\t(V)iew Lists, Tags, or Keywords\n\t"
-			"(U)pdate Tags\n\t(D)isplay all untagged Statements\n\t(S)ave Account\n \t(O)utput Something\n"<<std::endl;
+			"(U)pdate Tags\n\t(D)isplay all untagged Statements\n\t(S)ave Account\n"<<std::endl;
 	std::cin>>input;
 	while(input!="q" && input!="Q")
 	{	
@@ -153,12 +153,32 @@ int main(int argc, char* argv[])
 				}
 			}
 		}
+		if(input=="S" || input=="s")
+		{
+			std::cout << "Enter 'M' to save the master vector as a CSV, 'T' to save tags, or 'Q' to stop" << std::endl;
+			std::cin>>input;
+			while(input!="q" && input!="Q")
+			{
+				if(input=="M" || input == "m")
+				{
+					std::cout << "Enter the file name you want to save under" << std::endl;
+					std::cin>>input;
+					master.outputCSV(input);
+				}
+				if(input=="T" || input == "t")
+				{
+					std::cout << "Enter the file name you want to save under" << std::endl;
+					std::cin>>input;
+					tags.tagsToFile(input);
+				}
+				std::cout << "Enter 'M' to save the master vector as a CSV, 'T' to save tags, or 'Q' to stop" << std::endl;
+				std::cin>>input;
+			}
+		}
 		std::cout<< "Select an Option:('q' to quit)\n\t(A)dd Lists, Tags, or Keywords\n\t(V)iew Lists, Tags, or Keywords\n\t"
-			"(U)pdate Tags\n\t(D)isplay all untagged Statements\n\t(S)ave Account\n \t(O)utput Something\n"<<std::endl;
+			"(U)pdate Tags\n\t(D)isplay all untagged Statements\n\t(S)ave Account\n"<<std::endl;
 		std::cin>>input;
 	}
-	
-	MasterVector.output_csv("Output.csv");
 	
 	return 0;
 }
