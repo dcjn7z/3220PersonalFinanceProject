@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
 	{
 		master.addMaster(argv[1]);
 	
-		while(tags.fileToTags(argv[2])==0 || input=="q")
+		while(tags.fileToTags(argv[2])==0 && input!="q")
 		{
 			std::cout<<"Enter a filepath to a tag file, or type 'q' to skip"<<std::endl;
 			std::cin>>input;
@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
 	
 		std::cout<<"Enter a filepath to a tag file, or type 'q' to skip"<<std::endl;
 		std::cin>>input;
-		while(tags.fileToTags(input)==0 || input=="q")
+		while(tags.fileToTags(input)==0 && input!="q")
 		{
 			std::cout<<"Enter a filepath to a tag file, or type 'q' to skip"<<std::endl;
 			std::cin>>input;
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 	
 		std::cout<<"Enter a filepath to a tag file, or type 'q' to skip"<<std::endl;
 		std::cin>>input;
-		while(tags.fileToTags(input)==0 || input=="q")
+		while(tags.fileToTags(input)==0 && input!="q")
 		{
 			std::cout<<"Enter a filepath to a tag file, or type 'q' to skip"<<std::endl;
 			std::cin>>input;

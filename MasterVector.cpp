@@ -4,11 +4,12 @@ int MasterVector::addMaster(std::string filepath)
 {
 	StatementVector allStatements("AllStatements");
 	std::string input;
-	while (allStatements.fileToStatement(filepath)==0)
+	int value = allStatements.fileToStatement(filepath);
+	while (value==0)
 	{
 		std::cout << "Error opening file, please enter filepath to statements" << std::endl;
 		std::cin >> input;
-		allStatements.fileToStatement(input);
+		value = allStatements.fileToStatement(input);
 	}
 	master.push_back(allStatements);
 	return 1;

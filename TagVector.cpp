@@ -4,7 +4,6 @@ TagVector::TagVector(){}
 
 int TagVector::fileToTags(std::string filepath)
 {
-
 	std::ifstream file(filepath);
 
 	if(!file) {
@@ -13,11 +12,8 @@ int TagVector::fileToTags(std::string filepath)
 	}
 
     std::string line, string;
-
-    getline(file, line);
-	
+    getline(file, line);	
     std::string name, tag;
-	//std::cout << line << std::endl;  
 	
 	std::istringstream iline(line);      
 	getline(iline,string, ',');
@@ -25,12 +21,10 @@ int TagVector::fileToTags(std::string filepath)
 	{
 		this->tagList.push_back(Tag(string));
 	}
-	//getline(iline,string, ',');
 	
 	int index=0;
 	while (std::getline(file, line))
-    	{
-		std::cout << line << std::endl;
+    {
 		std::istringstream iline(line);    
 		getline(iline, string, ',');
 		while(getline(iline, string, ','))
@@ -38,7 +32,7 @@ int TagVector::fileToTags(std::string filepath)
        		this->tagList[index].addKeyword(string);
        	}
        index++;
-       }
+    }
     file.close();
     return 1;
 }
@@ -66,7 +60,7 @@ int TagVector::searchTag(std::string searchedTag)
 	for(int i = 0; i < tagList.size(); i++)
 	{
 		if (tagList[i].getTagName() == searchedTag)
- 		 {
+ 		{
  			std::cout << searchedTag << " Tag found at " << std::to_string(i) << "." << std::endl;
  			return i;
  		} 
@@ -82,9 +76,9 @@ void TagVector::printTags()
 	
 	for (int i = 0; i < tagList.size(); i++)
    	{
-    		output <<  tagList[i].getTagName() << ", ";
-    	}
-	std::cout <<  output.str() << std::endl;
+    	output << tagList[i].getTagName() << ", ";
+    }
+	std::cout << output.str() << std::endl;
 }
 
 void TagVector::printKeywords()
@@ -100,14 +94,14 @@ void TagVector::printKeywords()
 }
  
 void TagVector::addKeywords(std::string newKeyword)
- {
- 	std::string input;
+{
+ 	//if (searchTag(newKeyword) != -1)
  	tagList[searchTag(newKeyword)].addKeyword();
- }
- std::vector<Tag> TagVector::getTagList()
- {
+}
+std::vector<Tag> TagVector::getTagList()
+{
  	return tagList;
- }
+}
  
 int TagVector::tagsToFile(std::string filepath)
 {
@@ -117,7 +111,7 @@ int TagVector::tagsToFile(std::string filepath)
 		std::cerr << "Cannot open file\n";
 		return 0;
 	}
-    
+    file << "Tags,";
 	for(int i = 0; i<tagList.size();i++)
 	{
 		file << tagList[i].getTagName() << ",";
@@ -133,6 +127,5 @@ int TagVector::tagsToFile(std::string filepath)
 		file << std::endl;
 	}
 	file.close();
-    return 1;
-  
+    return 1;  
 }
