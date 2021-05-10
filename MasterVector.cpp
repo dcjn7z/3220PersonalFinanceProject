@@ -29,7 +29,6 @@ void MasterVector::updateTags(TagVector tagVector)
 					if(newStatements[x].getDescription().find(tagVector.getTagList()[y].getKeywords()[z])!=std::string::npos)
 					{
 						newStatements[x].setTag(tagVector.getTagList()[y].getTagName());
-						//std::cout << "Here " <<  x << " " << y << " " << z << " " << newStatements[x].getDescription() << std::endl;
 					}
 				}
 			}
@@ -52,29 +51,35 @@ void MasterVector::addList(std::string listName)
 	std::cout << "Enter 'T' for a tagged list, 'E' for expense list, 'I' for income list, or 'Q' to stop" << std::endl;
 	std::cin >> input;
 	while(input!="q" && input!="Q")
-			{
-				if(input=="T" || input == "t")
-				{
-					std::cout << "Enter a tag to make a list" << std::endl;
-					std::cin>>input;
-					newList.setStatements(master[0].taggedStatements(input));
-					master.push_back(newList);
-				}
+	{
+		if(input=="T" || input == "t")
+		{
+			std::cout << "Enter a tag to make a list" << std::endl;
+			std::cin>>input;
+			newList.setStatements(master[0].taggedStatements(input));
+			master.push_back(newList);
+			std::cout << "Enter 'T' for a tagged list, 'E' for expense list, 'I' for income list, or 'Q' to stop" << std::endl;
+			std::cin>>input;
+		}
 				
-				if(input=="E" || input == "e")
-				{
-					newList.setStatements(master[0].expenseStatements());
-					master.push_back(newList);
-				}
-				if(input=="I" || input == "i")
-				{
-					newList.setStatements(master[0].incomeStatements());
-					master.push_back(newList);
-				}	
-				std::cout << "Enter 'T' for a tagged list, 'E' for expense list, 'I' for income list, or 'Q' to stop" << std::endl;
-				std::cin>>input;
-				//std::cout << "Input = " << input << std::endl;
-			}
+		if(input=="E" || input == "e")
+		{
+			newList.setStatements(master[0].expenseStatements());
+			master.push_back(newList);
+			input="q";
+		}
+		else if(input=="I" || input == "i")
+		{
+			newList.setStatements(master[0].incomeStatements());
+			master.push_back(newList);
+			input="q";
+		}	
+		else 
+		{
+			std::cout << "Enter 'T' for a tagged list, 'E' for expense list, 'I' for income list, or 'Q' to stop" << std::endl;
+			std::cin>>input;
+		}
+	}
 }
 std::vector<StatementVector> MasterVector::getMasterVector()
 {

@@ -15,12 +15,16 @@ protected:
     std::string checkNmbr_;
     std::string amount_;
     std::string balance_;
-    //std::vector<std::string> tags;
     std::string tag_;
 
 public:
+	//Parameterized Constructor
     Statement(std::string date, std::string type, std::string description, std::string checkNmbr, std::string amount, std::string balance);
+
+	//The to_string method prints out all the information of a statement.
     std::string to_string();
+
+	//Getter function
     std::string getDate();
     std::string getType();
     std::string getDescription();
@@ -28,6 +32,8 @@ public:
     std::string getAmount();
     std::string getBalance();
     std::string getTag();
+
+	//Setter function
     void setTag(std::string newTag);
     
 };

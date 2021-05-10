@@ -3,12 +3,9 @@
 #include "StatementVector.h"
 #include "MasterVector.h"
 #include "TagVector.h"
-#include <iostream>
 
 int main(int argc, char* argv[])
 {
-	
-	
 	std::string input = "";
 	MasterVector master;
 	TagVector tags = TagVector();
@@ -16,7 +13,6 @@ int main(int argc, char* argv[])
 	if(argc==3)
 	{
 		master.addMaster(argv[1]);
-		//master.print();
 	
 		while(tags.fileToTags(argv[2])==0 || input=="q")
 		{
@@ -24,13 +20,11 @@ int main(int argc, char* argv[])
 			std::cin>>input;
 		}
 		std::cout << std::endl;
-		//tags.printKeywords();
 	}
 	
 	else if(argc==2)
 	{
 		master.addMaster(argv[1]);
-		//master.print();
 	
 		std::cout<<"Enter a filepath to a tag file, or type 'q' to skip"<<std::endl;
 		std::cin>>input;
@@ -40,7 +34,6 @@ int main(int argc, char* argv[])
 			std::cin>>input;
 		}
 		std::cout << std::endl;
-		//tags.printKeywords();
 	}
 	
 	else
@@ -58,7 +51,6 @@ int main(int argc, char* argv[])
 			std::cin>>input;
 		}
 		std::cout << std::endl;
-		//tags.printKeywords();
 	}
 
 	input="";
@@ -67,8 +59,6 @@ int main(int argc, char* argv[])
 	std::cin>>input;
 	while(input!="q" && input!="Q")
 	{	
-
-		
 		if(input=="A" || input=="a")
 		{		
 			std::cout << "Enter 'L' to add a list, 'T' to add a tag, 'K' to add a keyword, or 'Q' to stop" << std::endl;
@@ -97,7 +87,6 @@ int main(int argc, char* argv[])
 				}
 				std::cout << "Enter 'L' to add a list, 'T' to add a tag, 'K' to add a keyword, or 'Q' to stop" << std::endl;
 				std::cin>>input;
-				//std::cout << "Input = " << input << std::endl;
 			}
 		}	
 		if(input=="V" || input=="v")

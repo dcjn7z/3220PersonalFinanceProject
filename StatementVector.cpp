@@ -89,14 +89,11 @@ int StatementVector::fileToStatement(std::string filepath)
 	}
 
     std::string line, string;
-
     getline(file, line);
-
     std::string date, type, description, checkNmbr, amount, balance;
 
     while (std::getline(file, line))
-    {
-		//std::cout << line << std::endl;        
+    {     
 		std::istringstream iline(line);
 
 		getline(iline, string, ',');
