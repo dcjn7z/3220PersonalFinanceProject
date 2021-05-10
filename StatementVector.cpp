@@ -41,11 +41,12 @@ std::vector<Statement> StatementVector::taggedStatements(std::string tag)
 std::vector<Statement> StatementVector::incomeStatements()
 {
     std::vector<Statement> incomeStatements;
-    std::vector<Statement>::iterator iter;
-    for (iter = statements.begin(); iter != statements.end(); iter++)
+    for (int i = 0; i<statements.size();i++)
     {
-        if (std::stod((*iter).getAmount()) > 0)
-        incomeStatements.push_back(*iter);
+        if(statements[i].getAmount().find("-")==std::string::npos)
+        {
+        	incomeStatements.push_back(statements[i]);
+        }
     }
     return incomeStatements;
 }
@@ -53,11 +54,16 @@ std::vector<Statement> StatementVector::incomeStatements()
 std::vector<Statement> StatementVector::expenseStatements()
 {
     std::vector<Statement> expenseStatements;
-    std::vector<Statement>::iterator iter;
-    for (iter = statements.begin(); iter != statements.end(); iter++)
+    for (int i = 0; i<statements.size();i++)
     {
-        if (std::stod((*iter).getAmount()) < 0)
-        expenseStatements.push_back(*iter);
+        if(statements[i].getAmount().find("-")==std::string::npos)
+        {
+        
+        }
+        else
+        {
+        	expenseStatements.push_back(statements[i]);
+        }
     }
     return expenseStatements;
 }

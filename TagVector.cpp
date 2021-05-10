@@ -53,11 +53,11 @@ void TagVector::addTag(std::string newTag)
  			found = 1;
  			std::cout << "Tag already in the tag list" << std::endl;
  		}
-
- 		if (found==0)
- 		{
- 			tagList.push_back(newTag);
- 		}
+ 	}
+ 	
+ 	if (found==0)
+ 	{
+ 		tagList.push_back(newTag);
  	}
 }
 
